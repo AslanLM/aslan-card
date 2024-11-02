@@ -1,0 +1,254 @@
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #212121;
+  --hover-color: #3b3b3b;
+  --accent-color: #89b4fa;
+  --accent-text-color: #5f7daf;
+  --text-color: #f5f5f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("/img/evening-sky.png");
+  background-size: cover;
+  background-position: center;
+  /*  background-image: linear-gradient(to right bottom, #2f4858, #2e3543, #27232d, #191518, #000000); */
+  background-color: #000000;
+  margin: 0;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+  width: auto;
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+.bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.wrapper,
+.card {
+  position: relative;
+  width: 320px;
+  height: 450px;
+}
+
+.wrapper {
+  perspective: 1000px;
+}
+
+.card {
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1.2);
+  transform-style: preserve-3d;
+}
+
+.wrapper.flip .card {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: relative;
+  width: 320px;
+  height: 445px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 30, 46, 0.85) 50%,
+    rgba(48, 52, 70, 0.85) 50%
+  );
+  backdrop-filter: blur(2px);
+  color: var(--text-color);
+  border-radius: 2px;
+  box-shadow: 8px 10px 16px 0px rgba(33, 33, 33, 0.8);
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.info,
+.info-back {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.info {
+  padding-bottom: 0;
+}
+
+.about {
+  padding: 1rem;
+}
+
+.info h2,
+.info-back h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.info p,
+.about p,
+.about li {
+  font-size: 0.85rem;
+}
+
+.about p {
+  margin: 1rem 0;
+}
+
+.about li {
+  position: relative;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.info::after,
+.info-back::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  height: 2px;
+  width: 40px;
+  background-color: var(--accent-color);
+}
+
+.info::after {
+  bottom: -1rem;
+}
+
+.info-back::after {
+  bottom: 0rem;
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 320px;
+  height: 340px;
+  overflow: hidden;
+}
+
+.card-networks {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 1rem;
+}
+
+.card-networks::before {
+  content: "";
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 40px;
+  width: 2px;
+  background-color: var(--accent-color);
+}
+
+.card-networks a:hover {
+  transform: scale(1.1);
+}
+
+.btn-myprojects {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--text-color);
+  padding: 0.5rem 1rem;
+  overflow: hidden;
+}
+
+.btn-myprojects:hover {
+    color: var(--accent-text-color);
+    transform: translateX(-50%);
+}
+
+.btn-myprojects::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-color);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease-in;
+  z-index: -1;
+}
+
+.btn-myprojects:hover::before {
+  transform: scaleY(1);
+  transform-origin: bottom;
+  transition: transform 0.3s ease-in;
+}
+
+.myprojects a {
+  font-size: 1rem;
+}
+
+/* ripple */
+
+.ripple {
+  position: absolute;
+  background-color: var(--text-color);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: ripple 1s linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 120%;
+    height: 120%;
+    opacity: 0;
+  }
+}
